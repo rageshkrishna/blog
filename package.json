@@ -1,0 +1,52 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "description": "Ragesh's Blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rageshkrishna/blog.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Ragesh Krishna",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rageshkrishna/blog/issues"
+  },
+  "homepage": "https://github.com/rageshkrishna/blog",
+  "dependencies": {
+    "ragesh-wmd": "^0.2.11",
+    "glob": "^4.0.5",
+    "underscore": "^1.6.0"
+  },
+  "jshintConfig": {
+    "node": true,
+    "undef": true,
+    "noarg": true,
+    "white": true,
+    "esnext": true,
+    "strict": true,
+    "newcap": true,
+    "nonbsp": true,
+    "eqeqeq": true,
+    "unused": true,
+    "maxlen": 80,
+    "indent": 2,
+    "bitwise": true,
+    "noempty": true,
+    "latedef": "nofunc",
+    "maxdepth": 5,
+    "quotmark": "single",
+    "trailing": true,
+    "camelcase": true,
+    "maxparams": 8,
+    "globalstrict": true,
+    "maxcomplexity": 8,
+    "maxstatements": 20
+  }
+}
