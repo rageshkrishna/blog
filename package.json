@@ -20,12 +20,12 @@
   },
   "homepage": "https://github.com/rageshkrishna/blog",
   "dependencies": {
-    "ragesh-wmd": "^0.2.11",
+    "bunyan": "^1.1.0",
     "glob": "^4.0.5",
-    "underscore": "^1.6.0",
     "moment": "^2.8.3",
+    "ragesh-wmd": "^0.2.11",
     "slug": "^0.7.1",
-    "bunyan": "^1.1.0"
+    "underscore": "^1.6.0"
   },
   "jshintConfig": {
     "node": true,
