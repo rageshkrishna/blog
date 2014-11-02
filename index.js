@@ -3,19 +3,19 @@ var config = require('./config.js'),
     glob = require('glob'),
     logger = require('./lib/logger.js'),
     MarkdownTransformStream = require('./lib/markdownTransform.js'),
-    HtmlTransformStream = require('./lib/htmlTransformer.js');
+    HtmlTransformStream = require('./lib/htmlTransformer.js'),
+    PostWriter = require('./lib/postWriter.js');
 
 var matchingFiles = glob.sync(config.postsGlobPattern, null);
 
 var markdownTransformStream = new MarkdownTransformStream();
-var htmlTransformStream = new HtmlTransformStream();
+var htmlTransformStream = new HtmlTransformStream(config);
+var postWriter = new PostWriter(config);
 
-markdownTransformStream.pipe(htmlTransformStream);
+markdownTransformStream.
+  pipe(htmlTransformStream).
+  pipe(postWriter);
 
-htmlTransformStream.on('readable', function() {
-  var html = htmlTransformStream.read();
-  logger.debug({ html: html }, 'HTML output');
-});
 
 matchingFiles.forEach(function(match) {
   markdownTransformStream.write(match);
