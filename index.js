@@ -1,19 +1,24 @@
 'use strict';
-var generatePosts = require('./lib/generator.js'),
-    logger = require('./lib/logger.js');
+var config = require('./config.js'),
+    glob = require('glob'),
+    logger = require('./lib/logger.js'),
+    MarkdownTransformStream = require('./lib/markdownTransform.js'),
+    HtmlTransformStream = require('./lib/htmlTransformer.js');
 
-var postStream = generatePosts();
+var matchingFiles = glob.sync(config.postsGlobPattern, null);
 
-postStream.on('error', function(err) {
-  logger.error(err, 'Error from post stream');
+var markdownTransformStream = new MarkdownTransformStream();
+var htmlTransformStream = new HtmlTransformStream();
+
+markdownTransformStream.pipe(htmlTransformStream);
+
+htmlTransformStream.on('readable', function() {
+  var html = htmlTransformStream.read();
+  logger.debug({ html: html }, 'HTML output');
 });
-postStream.on('readable', function() {
-  logger.debug('Reading post stream');
-  var post = postStream.read();
-  logger.debug({ post: post }, 'Got a post');
-});
-postStream.on('end', function() {
-  logger.debug('Post stream processed completely');
+
+matchingFiles.forEach(function(match) {
+  markdownTransformStream.write(match);
 });
 
-
+logger.debug('All done!');
