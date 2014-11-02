@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+</head>
+<body>
+  <h1>Index</h1>
+  <ul>
+  <% for (var i = 0; i < latest.length; i++) { %>
+      <li>
+        <a href="<%= latest[i].relativePath %>">
+          <span class="title"><%= latest[i].title %></span>
+        </a>
+        <span class="publishDate"><%= latest[i].publishDate %></span>
+      </li>
+  <% } %>
+  </ul>
+</body>
+</html>
